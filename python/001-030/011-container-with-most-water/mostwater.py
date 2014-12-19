@@ -11,7 +11,7 @@ class Solution:
         pos = 0
         while pos<length:
 
-            area = 
+            area =
 
         return max
 

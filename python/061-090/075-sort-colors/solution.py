@@ -1,3 +1,5 @@
+__author__ = 'yinjun'
+
 class Solution:
     # @param A a list of integers
     # @return nothing, sort in place
@@ -48,8 +50,3 @@ class Solution:
         x = A[i]
         A[i] = A[j]
         A[j] = x
-
-s = Solution()
-A = [0,2, 2, 2,1]
-s.sortColors(A)
-print A

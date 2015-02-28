@@ -1,10 +1,14 @@
 __author__ = 'yinjun'
 
 import os
+import imp
 
 class SimpleLeetLoader:
 
     def loadDirs(self):
+        os.chdir(os.path.dirname(os.path.abspath(__file__)))
+        #print os.path.dirname(os.path.abspath(__file__))
+        #print os.getcwd()
         dirs = os.listdir(os.getcwd())
         code = {}
 
@@ -25,6 +29,37 @@ class SimpleLeetLoader:
                             code[key] = path
         return code
 
+    def execute(self, path):
+        pys = os.listdir(path)
+        l = len(pys)
+        if l == 1:
+            file = path + '/' + pys[0]
+            os.chdir(path)
+            execfile(pys[0])
+
+        elif l == 0:
+            print "python file not found in ", path
+        else:
+
+            if "solution.py" in pys and "test.py" in pys:
+                os.chdir(path)
+                execfile("test.py")
+            else:
+                #print pys
+                for i in range(l):
+                    print i, pys[i]
+                no = raw_input("input file number:")
+                j = int(no)
+                if j>=0 and j < l:
+                    file = path + '/' + pys[j]
+                    path = os.getcwd() + '/' + path
+                    #execfile(file)
+                    #print path
+                    os.chdir(path)
+                    execfile(pys[j])
+                else:
+                    print "error python file no "
+
     def run(self):
         code = self.loadDirs()
 
@@ -35,24 +70,7 @@ class SimpleLeetLoader:
             exit(1)
         elif content in code:
             path = code[content]
-            pys = os.listdir(path)
-            l = len(pys)
-            if l == 1:
-                file = path + '/' + pys[0]
-                execfile(file)
-            elif l ==0:
-                print "python file not found in ", path
-            else:
-                #print pys
-                for i in range(l):
-                    print i, pys[i]
-                no = raw_input("input file number:")
-                j = int(no)
-                if j>=0 and j < l:
-                    file = path + '/' + pys[j]
-                    print execfile(file)
-                else:
-                    print "error python file no "
+            self.execute(path)
         else:
             print "path not found ", content
 

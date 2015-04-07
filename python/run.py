@@ -2,6 +2,7 @@ __author__ = 'yinjun'
 
 import os
 import imp
+import time
 
 class SimpleLeetLoader:
 
@@ -61,10 +62,10 @@ class SimpleLeetLoader:
                     print "error python file no "
 
     def run(self):
-        code = self.loadDirs()
 
         content = raw_input("input problem number (ctrl + x or 0 to exit):")
         #print content
+        code = self.loadDirs()
 
         if content == '0' or content == "":
             exit(1)
@@ -78,6 +79,7 @@ class SimpleLeetLoader:
 
         while True:
             self.run()
+            time.sleep(1)
 
 if __name__ == '__main__':
     # service.py executed as script

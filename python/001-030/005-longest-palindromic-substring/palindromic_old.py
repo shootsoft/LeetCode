@@ -4,7 +4,7 @@ class Solution:
         max_sub = ''
         max_len = 0
         str_len = len(s)
-        
+
         if s is '' or str_len==1:
         	return s
 
